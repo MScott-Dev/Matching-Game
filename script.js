@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const memoryGame = document.querySelector(".memory-game");
+    const spanElement = document.querySelector(".span");
     const cards = generateCards();
     let flippedCards = [];
     let matchedPairs = 0;
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add click event listener to each card
     cards.forEach(card => card.addEventListener("click", flipCard));
+    
 
     function generateCards() {
         const icons = ["🍎", "🍌", "🍒", "🍇", "🍊", "🍓", "🍑", "🥑"];
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createCard(icon) {
         const card = document.createElement("div");
         card.classList.add("card");
-        card.innerHTML = `<span hidden >${icon}</span>`;
+        card.innerHTML = `<span class="span" hidden >${icon}</span>`;
         return card;
     }
 
@@ -40,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         card.classList.add("flipped");
+        card.firstElementChild.removeAttribute('hidden');
         flippedCards.push(card);
 
         if (flippedCards.length === 2) {
